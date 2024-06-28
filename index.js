@@ -4,6 +4,10 @@ const sequelize = require('./db/db');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const errorHandlingMiddleware = require('./middleware/errorHandlingMiddleware')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./Swagger/index.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 require('dotenv').config();
 
 const router = require('./router')
