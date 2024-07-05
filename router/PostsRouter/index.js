@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/',
     authMiddleware,
     body('title').isLength({min: 1, max: 20}),
-    body('text').isLength({min: 1}),
+    body('text').isLength({min: 1, max: 3000}),
     postController.createNewPost);
 
 router.get('/posts/:userId', postController.getUsersPost);

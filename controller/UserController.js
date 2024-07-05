@@ -1,5 +1,5 @@
 const {validationResult} = require("express-validator");
-const {ApiError} = require("../Errors");
+const ApiError = require("../Errors");
 const userService = require('../service/UserService')
 
 
@@ -34,7 +34,7 @@ class UserController {
 
             const {email, password} = req.body;
 
-            const {user, refreshToken, accessToken} = await userService.signIn(email, password, userDeviceId);
+            const {user, refreshToken, accessToken} = await userService.signIn(email, password);
 
             res.cookie('refreshToken', refreshToken, {
                 maxAge: 30 * 24 * 60 * 60 * 1000,

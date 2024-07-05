@@ -1,6 +1,6 @@
 const postService = require("../service/PostService")
 const {validationResult} = require("express-validator");
-const {ApiError} = require("../Errors");
+const ApiError = require("../Errors");
 
 class PostController {
 

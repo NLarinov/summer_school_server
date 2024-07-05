@@ -1,4 +1,4 @@
-const {ApiError} = require('../Errors')
+const ApiError = require('../Errors')
 
 function errorHandlingMiddleware (err, req, res, next){
 

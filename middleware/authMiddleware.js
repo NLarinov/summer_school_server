@@ -1,5 +1,5 @@
 const {ApiError} = require("../Errors");
-const {tokenService} = require("../Service/TokenService");
+const tokenService = require("../Service/TokenService");
 const User_dto = require('../DTO/user_dto')
 
 function authMiddleware(req, res, next) {
