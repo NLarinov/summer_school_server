@@ -35,7 +35,9 @@ class PostController {
 
     async getPostFeed(req, res, next) {
         try{
-            const post = await postService.getAllPosts();
+            const { searchString } = req.query
+            console.log(searchString)
+            const post = await postService.getAllPosts(searchString);
 
             return res.json(post);
         }

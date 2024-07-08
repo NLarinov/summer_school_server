@@ -1,4 +1,5 @@
 const {Post} = require("../db");
+const {Op} = require("sequelize");
 
 
 class PostService {
@@ -17,8 +18,24 @@ class PostService {
         })
     }
 
-    async getAllPosts() {
-        return await Post.findAll();
+    async getAllPosts(searchString = '') {
+        console.log(searchString)
+        return await Post.findAll({
+            where: {
+                [Op.or]: [
+                    {
+                        title: {
+                            [Op.substring]: searchString
+                        }
+                    },
+                    {
+                        text: {
+                            [Op.substring]: searchString
+                        }
+                    },
+                ]
+            }
+        });
     }
 
 }
