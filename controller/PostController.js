@@ -9,9 +9,9 @@ class PostController {
             const errors = validationResult(req);
             if(!errors.isEmpty()) return next(ApiError.badRequest(JSON.stringify(errors.mapped())));
 
-            const {title, text, localUserData} = req.body;
+            const {title, text, nick, tags, grade, localUserData} = req.body;
 
-            const post = await postService.createNewPost(title, text, localUserData.id);
+            const post = await postService.createNewPost(title, text, nick, tags, grade, localUserData.id);
 
             return res.json(post);
         }

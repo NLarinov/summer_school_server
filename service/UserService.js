@@ -3,15 +3,15 @@ const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt')
 const ApiError = require('../Errors')
 const User_dto = require('../DTO/user_dto')
-const tokenService = require('../service/TokenService')
+const tokenService = require('../Service/TokenService')
 
 class UserService {
-    async signUp(email, name, surname, password){
+    async signUp(email, name, univ, faculty, grade, surname, password){
         try{
             if(await User.findOne({where: { email }})) throw new Error('Пользователь уже зарегистрирован');
 
             const hashPassword = await bcrypt.hash(password, 5)
-            const user = await User.create({email, name, password: hashPassword, surname, refreshToken: 'asd'})
+            const user = await User.create({email, name, password: hashPassword, univ, faculty, grade, surname, refreshToken: 'asd'})
 
             const userDTO = new User_dto(user);
             const tokens = tokenService.generateTokens({...userDTO});

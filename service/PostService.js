@@ -6,7 +6,7 @@ class PostService {
 
     async createNewPost(title, text, userId) {
         return await Post.create({
-            title, text, userId
+            title, text, userId, nick, tags, grade
         });
     }
 
@@ -30,6 +30,21 @@ class PostService {
                     },
                     {
                         text: {
+                            [Op.substring]: searchString
+                        }
+                    },
+                    {
+                        nick: {
+                            [Op.substring]: searchString
+                        }
+                    },
+                    {
+                        tags: {
+                            [Op.substring]: searchString
+                        }
+                    },
+                    {
+                        grade: {
                             [Op.substring]: searchString
                         }
                     },

@@ -5,12 +5,14 @@ class User_dto{
     surname;
     email;
     id;
+    univ;
 
     constructor(model) {
         this.name = model.name;
         this.email = model.email;
         this.id = model.id;
         this.surname = model.surname;
+        this.univ = model.univ;
     }
 }
 

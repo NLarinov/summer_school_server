@@ -9,8 +9,8 @@ class UserController {
             const errors = validationResult(req);
             if(!errors.isEmpty()) return next(ApiError.badRequest(JSON.stringify(errors.mapped())));
 
-            const {email, name, password, surname} = req.body
-            const {user, refreshToken, accessToken} = await userService.signUp(email, name, surname, password);
+            const {email, name, password, univ, faculty, grade, surname} = req.body
+            const {user, refreshToken, accessToken} = await userService.signUp(email, name, univ, faculty, grade, surname, password);
 
             res.cookie('refreshToken', refreshToken, {
                 maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -35,6 +35,7 @@ class UserController {
             const {email, password} = req.body;
 
             const {user, refreshToken, accessToken} = await userService.signIn(email, password);
+            console.log(user)
 
             res.cookie('refreshToken', refreshToken, {
                 maxAge: 30 * 24 * 60 * 60 * 1000,
