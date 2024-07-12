@@ -9,6 +9,6 @@
 - DB_HOST
 - DB_PORT
 
-to deploy:
-npm i
-nmp run dev
+# to deploy:
+- npm i
+- nmp run dev
